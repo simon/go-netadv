@@ -29,9 +29,6 @@ func SplitNetworkInTwo(network *net.IPNet) (*net.IPNet, *net.IPNet) {
 	size, _ := network.Mask.Size()
 	newMask := net.CIDRMask(size+1, 8*net.IPv6len)
 
-	//	byte1 := net.IP{0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-	//	ip2 := SliceShiftRight(byte1, uint(size))
-
 	ip2 := SliceSetOne(net.IP{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, uint(size))
 	ip2 = SliceOr(network.IP, ip2)
 
