@@ -27,7 +27,7 @@ func SplitNetworks(network *net.IPNet, newsize uint) ([]*net.IPNet, error) {
 // SplitNetworkInTwo split a network in two. return two sub network
 func SplitNetworkInTwo(network *net.IPNet) (*net.IPNet, *net.IPNet) {
 	size, _ := network.Mask.Size()
-	newMask := net.CIDRMask(size+1, 8*net.IPv6len)
+	newMask := net.CIDRMask(size+1, 8*len(network.IP))
 
 	ip2 := SliceSetOne(net.IP{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, uint(size))
 	ip2 = SliceOr(network.IP, ip2)
